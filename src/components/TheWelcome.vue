@@ -1,24 +1,33 @@
 <script setup lang="ts">
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+
+import { useQuery, useResult } from '@vue/apollo-composable'
+import { ref } from 'vue';
+import PoolsQuery from './PoolsQuery'
+
+interface PoolsQueryResult {
+  pools: { name: string, id: string }[]
+}
+
+const first = ref(5)
+const skip = ref(0)
+
+const { result } = useQuery<PoolsQueryResult>(PoolsQuery, { first, skip })
+
+const pools = useResult(
+  result,
+  [],
+  data => data.pools
+);
+console.log({ pools })
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Documentation</template>
+  <div>
+    <h3>Pools</h3>
+    <div v-for="pool in pools" :key="pool.id">{{ pool.name }}</div>
+  </div>
 
-    Vue’s
-    <a target="_blank" href="https://vuejs.org/">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
-
+  <!-- 
   <WelcomeItem>
     <template #icon>
       <ToolingIcon />
@@ -31,9 +40,8 @@ import SupportIcon from './icons/IconSupport.vue'
     <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>. If you need to test
     your components and web pages, check out
     <a href="https://www.cypress.io/" target="_blank">Cypress</a> and
-    <a href="https://docs.cypress.io/guides/component-testing/introduction" target="_blank"
-      >Cypress Component Testing</a
-    >.
+    <a href="https://docs.cypress.io/guides/component-testing/introduction" target="_blank">Cypress Component
+      Testing</a>.
 
     <br />
 
@@ -80,5 +88,5 @@ import SupportIcon from './icons/IconSupport.vue'
     As an independent project, Vue relies on community backing for its sustainability. You can help
     us by
     <a target="_blank" href="https://vuejs.org/sponsor/">becoming a sponsor</a>.
-  </WelcomeItem>
+  </WelcomeItem> -->
 </template>

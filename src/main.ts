@@ -1,9 +1,17 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp, provide, h } from 'vue';
+import { DefaultApolloClient } from '@vue/apollo-composable';
+import App from './App.vue';
+import router from './router';
+import { apolloClient } from './apolloProvider';
 
-const app = createApp(App)
+const app = createApp({
+  setup() {
+    provide(DefaultApolloClient, apolloClient);
+  },
 
-app.use(router)
+  render: () => h(App),
+});
 
-app.mount('#app')
+app.use(router);
+
+app.mount('#app');
