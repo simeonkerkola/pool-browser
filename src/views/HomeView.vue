@@ -25,7 +25,7 @@ console.log({ pools })
   <div>
     <h3>Pools</h3>
     <div v-for="pool in pools" :key="pool.id">
-      <RouterLink :to="{ name: 'pool', params: { id: pool.id, name: pool.name } }"> {{ pool.name }}</RouterLink>
+      <RouterLink :to="{ name: 'pool', params: { id: pool.id } }"> {{ pool.name }}</RouterLink>
       {{ pool.totalLiquidity }}
     </div>
   </div>

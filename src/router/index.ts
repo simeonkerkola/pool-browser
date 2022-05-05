@@ -11,7 +11,7 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/pool/:id?:name',
+      path: '/pool/:id',
       name: 'pool',
       component: PoolView,
     },
