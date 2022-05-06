@@ -3,8 +3,9 @@ import { defineProps } from 'vue'
 
 
 const props = defineProps({
-  name: { type: String, required: true },
+  symbol: { type: String, required: true },
   id: { type: String, required: true },
+  balance: { type: String, default: '' },
   weight: { type: Number, required: true }
 })
 
@@ -13,10 +14,15 @@ const props = defineProps({
 <template>
   <li>
 
-    {{ props.name }}
+    <a :href="`https://etherscan.io/address/${props.id}`" rel="noopener noreferrer">
+      {{ props.symbol }}
+    </a>
     <ul>
       <li>
         id: {{ props.id }}
+      </li>
+      <li>
+        balance: {{ Math.round(props.balance) }}
       </li>
       <li>
         weight: {{ props.weight }}

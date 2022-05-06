@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { ethers } from 'ethers';
 import { useRoute } from 'vue-router'
-
 import { useQuery, useResult } from '@vue/apollo-composable'
 import PoolQuery from './PoolQuery'
 import TokenInfo from '../components/TokenInfo.vue'
@@ -11,15 +11,26 @@ interface PoolsQueryResult {
   pool: {
     id: string
     name: string
-    tokens: { name: string, id: string, weight: number | null }[]
+    tokens: {
+      symbol: string, id: string, weight: number | null
+      token: {
+        id: string
+      }
+    }[]
   }
 }
 const route = useRoute()
-const poolId = route.params.id
+const poolId = route.params.id as string
 
 const { getPoolTokens } = useVault()
-const poolTokens = ref({})
-getPoolTokens(poolId).then((res: object) => { poolTokens.value = res })
+const poolTokenBalances = ref<{ [key: string]: string }>({})
+getPoolTokens(poolId).then((res) => {
+
+  const keys = res.tokens.map((token) => token.toUpperCase())
+  const values = res.balances.map((balance) => ethers.utils.formatEther(balance))
+  poolTokenBalances.value = Object.fromEntries(keys.map((_, i) => [keys[i], values[i]]))
+})
+
 
 const { result } = useQuery<PoolsQueryResult>(PoolQuery, { id: poolId })
 const pool = useResult(
@@ -27,12 +38,11 @@ const pool = useResult(
   {},
   data => data.pool
 );
-const tokens = useResult(
+const poolTokens = useResult(
   result,
   [],
   data => data.pool.tokens
 );
-console.log({ tokens })
 </script>
 
 <template>
@@ -40,8 +50,10 @@ console.log({ tokens })
     <h1>{{ pool.name }}</h1>
     <h2>{{ route.params.id }}</h2>
     <ul>
-      <template v-for="token in tokens" :key="token.id">
-        <token-info :name="token.name" :id="token.id" :weight="token.weight || 0"></token-info>
+      <template v-for="poolToken in poolTokens" :key="poolToken.id">
+        <token-info :symbol="poolToken.symbol" :id="poolToken.token.id" :weight="poolToken.weight || 0"
+          :balance="poolTokenBalances[poolToken.token.id.toUpperCase()]">
+        </token-info>
       </template>
     </ul>
   </div>
