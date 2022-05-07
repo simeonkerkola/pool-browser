@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
-
+import { roundNumber } from '@/helpers/numbers';
 
 const props = defineProps({
   symbol: { type: String, required: true },
@@ -22,7 +22,7 @@ const props = defineProps({
         id: {{ props.id }}
       </li>
       <li>
-        balance: {{ Math.round(props.balance) }}
+        balance: {{ roundNumber(props.balance) }}
       </li>
       <li>
         weight: {{ props.weight }}
