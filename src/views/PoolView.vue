@@ -22,11 +22,13 @@ interface PoolsQueryResult {
 const route = useRoute()
 const poolId = route.params.id as string
 
-const { getPoolTokens } = useVault()
-const poolTokenBalances = ref<{ [key: string]: string }>({})
-getPoolTokens(poolId).then((res) => {
+const vault = useVault()
+const poolTokenBalances = ref<Record<string, string>>({})
+vault.getPoolTokens(poolId).then((res) => {
 
+  // Use token address as a key
   const keys = res.tokens.map((token) => token.toUpperCase())
+  // Use balance as a value
   const values = res.balances.map((balance) => ethers.utils.formatEther(balance))
   poolTokenBalances.value = Object.fromEntries(keys.map((_, i) => [keys[i], values[i]]))
 })
