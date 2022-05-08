@@ -6,7 +6,7 @@ const props = defineProps({
   symbol: { type: String, required: true },
   id: { type: String, required: true },
   balance: { type: String, default: '' },
-  weight: { type: Number, required: true }
+  weight: { type: [String, Number], required: true }
 })
 
 </script>

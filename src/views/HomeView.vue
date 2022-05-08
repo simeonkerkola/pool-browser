@@ -1,25 +1,21 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { useQuery, useResult } from '@vue/apollo-composable'
-import { ref } from 'vue';
-import PoolsQuery from './PoolsQuery'
+import { computed } from 'vue';
 import { usd } from '../helpers/numbers'
+import usePoolsQuery from '@/composables/usePoolsQuery/usePoolsQuery'
+import FetchMoreBtn from '@/components/FetchMoreBtn.vue';
 
-interface PoolsQueryResult {
-  pools: { name: string, id: string, totalLiquidity: string }[]
+const { result, loading, error, fetchMoreResults } = usePoolsQuery()
+
+const pools = computed(() => result.value?.pools ?? [])
+if (error.value) {
+  console.error({ error: error.value })
 }
 
-const first = ref(5)
-const skip = ref(0)
+async function handleClick() {
+  fetchMoreResults()
+}
 
-const { result } = useQuery<PoolsQueryResult>(PoolsQuery, { first, skip })
-
-const pools = useResult(
-  result,
-  [],
-  data => data.pools
-);
-console.log({ pools })
 </script>
 
 <template>
@@ -29,5 +25,6 @@ console.log({ pools })
       <RouterLink :to="{ name: 'pool', params: { id: pool.id } }"> {{ pool.name }}</RouterLink>
       {{ usd(pool.totalLiquidity) }}
     </article>
+    <fetch-more-btn :disabled="loading" :loading="loading" @click="handleClick"></fetch-more-btn>
   </section>
 </template>

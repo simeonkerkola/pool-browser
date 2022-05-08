@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ethers } from 'ethers';
 import { useRoute } from 'vue-router'
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery } from '@vue/apollo-composable'
 import PoolQuery from './PoolQuery'
 import TokenInfo from '../components/TokenInfo.vue'
 import useVault from '../composables/useVault'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 interface PoolsQueryResult {
   pool: {
@@ -35,16 +35,9 @@ vault.getPoolTokens(poolId).then((res) => {
 
 
 const { result } = useQuery<PoolsQueryResult>(PoolQuery, { id: poolId })
-const pool = useResult(
-  result,
-  {},
-  data => data.pool
-);
-const poolTokens = useResult(
-  result,
-  [],
-  data => data.pool.tokens
-);
+const pool = computed(() => result.value?.pool ?? {})
+
+const poolTokens = computed(() => result.value?.pool.tokens ?? [])
 </script>
 
 <template>

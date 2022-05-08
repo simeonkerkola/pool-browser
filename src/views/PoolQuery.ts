@@ -6,12 +6,12 @@ export default gql`
       id
       name
       tokens {
+        id
+        symbol
+        weight
         token {
           id
         }
-        symbol
-        id
-        weight
       }
     }
   }
