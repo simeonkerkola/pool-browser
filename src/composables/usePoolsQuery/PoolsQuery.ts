@@ -14,7 +14,11 @@ export default gql`
       totalLiquidity
       tokens {
         id
-        name
+        symbol
+        weight
+        token {
+          id
+        }
       }
     }
   }

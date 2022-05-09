@@ -1,30 +1,35 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 import { computed } from 'vue';
-import { usd } from '../helpers/numbers'
-import usePoolsQuery from '@/composables/usePoolsQuery/usePoolsQuery'
+import usePoolsQuery from '@/composables/usePoolsQuery/usePoolsQuery';
 import FetchMoreBtn from '@/components/FetchMoreBtn.vue';
+import PoolCard from '@/components/PoolCard.vue';
 
-const { result, loading, error, fetchMoreResults } = usePoolsQuery()
+const { result, loading, error, fetchMoreResults } = usePoolsQuery();
 
-const pools = computed(() => result.value?.pools ?? [])
+const pools = computed(() => result.value?.pools ?? []);
 if (error.value) {
-  console.error({ error: error.value })
+  console.error({ error: error.value });
 }
 
 async function handleClick() {
-  fetchMoreResults()
+  fetchMoreResults();
 }
-
 </script>
 
 <template>
   <section>
     <h2>Pools</h2>
-    <article v-for="pool in pools" :key="pool.id">
-      <RouterLink :to="{ name: 'pool', params: { id: pool.id } }"> {{ pool.name }}</RouterLink>
-      {{ usd(pool.totalLiquidity) }}
-    </article>
+    <div class="pools-grid">
+      <pool-card v-for="pool in pools" :key="pool.id" :pool="pool"></pool-card>
+    </div>
     <fetch-more-btn :disabled="loading" :loading="loading" @click="handleClick"></fetch-more-btn>
   </section>
 </template>
+
+<style scoped>
+.pools-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+</style>

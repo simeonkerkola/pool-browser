@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
@@ -8,9 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <header>
       <nav>
         <h1>
-          <RouterLink to="/">
-            Balancer Pool Browser
-          </RouterLink>
+          <RouterLink to="/"> Balancer Pool Browser </RouterLink>
         </h1>
       </nav>
     </header>
@@ -40,7 +37,6 @@ a,
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
-
 
 nav a.router-link-exact-active {
   color: var(--color-text);
