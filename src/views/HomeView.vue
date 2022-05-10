@@ -17,12 +17,12 @@ async function handleClick() {
 </script>
 
 <template>
-  <section>
+  <section class="home-page-wrapper">
     <h2>Pools</h2>
     <div class="pools-grid">
       <pool-card v-for="pool in pools" :key="pool.id" :pool="pool"></pool-card>
     </div>
-    <fetch-more-btn :disabled="loading" :loading="loading" @click="handleClick"></fetch-more-btn>
+    <fetch-more-btn class="fetch-more-btn" :disabled="loading" :loading="loading" @click="handleClick"></fetch-more-btn>
   </section>
 </template>
 
@@ -31,5 +31,21 @@ async function handleClick() {
   display: grid;
   gap: 20px;
   grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 768px) {
+  .pools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-page-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.fetch-more-btn {
+  margin: 0 auto;
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps, computed } from 'vue';
-
+import { roundNumber } from '@/helpers/numbers';
 interface Props {
   poolToken: {
     weight: string | null;
@@ -13,7 +13,9 @@ interface Props {
 const props = defineProps<Props>();
 
 const weight = computed(() =>
-  props.poolToken.weight ? `${Number(props.poolToken.weight) * 100}%` : ''
+  props.poolToken.weight
+    ? `${roundNumber(Number(props.poolToken.weight) * 100)}%`
+    : ''
 );
 </script>
 

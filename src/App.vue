@@ -5,9 +5,9 @@ import { RouterLink, RouterView } from 'vue-router';
 <template>
   <div class="wrapper">
     <header>
-      <nav>
-        <h1>
-          <RouterLink to="/"> Balancer Pool Browser </RouterLink>
+      <nav class="navigation">
+        <h1 class="header">
+          <RouterLink to="/">Balancer Pool Browser</RouterLink>
         </h1>
       </nav>
     </header>
@@ -18,6 +18,15 @@ import { RouterLink, RouterView } from 'vue-router';
 
 <style>
 @import '@/assets/base.css';
+
+.navigation {
+  padding: 20px 0;
+}
+
+.header {
+  font-size: 1rem;
+  font-weight: 600;
+}
 
 .wrapper {
   max-width: 900px;
