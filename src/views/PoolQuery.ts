@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export default gql`
   query PoolQuery($id: ID!) {
@@ -6,6 +6,7 @@ export default gql`
       id
       name
       tokens {
+        decimals
         id
         symbol
         weight

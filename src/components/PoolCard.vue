@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue';
-import { RouterLink } from 'vue-router';
-import { usd } from '../helpers/numbers';
-import PoolToken from './PoolToken.vue';
+import { computed } from "vue";
+import { RouterLink } from "vue-router";
+import { formatUsd } from "../helpers/numbers";
+import PoolToken from "./PoolToken.vue";
 
 interface Props {
   pool: {
@@ -25,20 +25,22 @@ const pool = computed(() => props.pool);
 
 <template>
   <article class="card">
-    <RouterLink :to="{ name: 'pool', params: { id: pool.id } }">
-      <h3 class="pool-name">
+    <h3 class="pool-name">
+      <RouterLink :to="{ name: 'pool', params: { id: pool.id } }">
         {{ pool.name }}
-      </h3>
-    </RouterLink>
-    <span class="total-liquidity">
-      {{ usd(pool.totalLiquidity) }}
+      </RouterLink>
+    </h3>
+    <span>
+      {{ formatUsd(pool.totalLiquidity) }}
     </span>
     <div class="tokens">
-      <pool-token v-for="poolToken in pool.tokens" :poolToken="poolToken" :key="poolToken.id">
+      <pool-token
+        v-for="poolToken in pool.tokens"
+        :poolToken="poolToken"
+        :key="poolToken.id"
+      >
       </pool-token>
     </div>
-    <!-- <img v-for="poolToken in pool.tokens" :key="poolToken.id"
-        :src="`https://assets.trustwalletapp.com/blockchains/ethereum/assets/${poolToken.token.id}/logo.png`" alt=""> -->
   </article>
 </template>
 
@@ -46,8 +48,6 @@ const pool = computed(() => props.pool);
 .pool-name {
   font-size: 1.1rem;
 }
-
-.total-liquidity {}
 
 .card {
   display: flex;

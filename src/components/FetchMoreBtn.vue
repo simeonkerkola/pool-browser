@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
-
 const emit = defineEmits<{
-  (e: 'click', value: MouseEvent): void;
+  (e: "click", value: MouseEvent): void;
 }>();
 
 const props = defineProps({
@@ -12,7 +10,7 @@ const props = defineProps({
 
 <template>
   <button class="button" @click="(e) => emit('click', e)">
-    {{ props.loading ? 'Loading...' : 'Fetch more' }}
+    {{ props.loading ? "Loading..." : "Fetch more" }}
   </button>
 </template>
 
@@ -26,5 +24,6 @@ const props = defineProps({
   text-transform: uppercase;
   border: none;
   color: var(--vt-c-black-soft);
+  cursor: pointer;
 }
 </style>

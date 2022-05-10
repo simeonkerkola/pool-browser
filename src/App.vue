@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
@@ -11,13 +11,12 @@ import { RouterLink, RouterView } from 'vue-router';
         </h1>
       </nav>
     </header>
-
     <RouterView />
   </div>
 </template>
 
 <style>
-@import '@/assets/base.css';
+@import "@/assets/base.css";
 
 .navigation {
   padding: 20px 0;
@@ -48,5 +47,9 @@ nav a.router-link-exact-active {
 
 nav a.router-link-exact-active:hover {
   background-color: transparent;
+}
+
+.text-end {
+  text-align: end;
 }
 </style>

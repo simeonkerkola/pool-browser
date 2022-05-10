@@ -13,6 +13,8 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
+        // Field policy for pools query's pagination
+        // https://www.apollographql.com/docs/react/pagination/core-api
         pools: {
           // Don't cache separate results based on
           // any of this field's arguments.

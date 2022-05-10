@@ -1,12 +1,19 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export default gql`
-  query PoolsQuery($first: Int, $skip: Int) {
+  query PoolsQuery(
+    $orderBy: Pool_orderBy
+    $orderDirection: OrderDirection
+    $first: Int
+    $skip: Int
+    $where: Pool_filter
+  ) {
     pools(
-      orderBy: totalLiquidity
-      orderDirection: desc
+      orderBy: $orderBy
+      orderDirection: $orderDirection
       first: $first
       skip: $skip
+      where: $where
     ) {
       id
       poolType
