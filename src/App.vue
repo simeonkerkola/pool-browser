@@ -6,7 +6,7 @@ import { RouterLink, RouterView } from 'vue-router';
   <div class="wrapper">
     <header>
       <nav class="navigation">
-        <h1 class="header">
+        <h1>
           <RouterLink to="/">Balancer Pool Browser</RouterLink>
         </h1>
       </nav>
@@ -21,11 +21,6 @@ import { RouterLink, RouterView } from 'vue-router';
 
 .navigation {
   padding: 20px 0;
-}
-
-.header {
-  font-size: 1rem;
-  font-weight: 600;
 }
 
 .wrapper {
