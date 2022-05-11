@@ -1,6 +1,6 @@
-import { ref } from "vue";
-import { useQuery } from "@vue/apollo-composable";
-import PoolsQuery from "./PoolsQuery";
+import { ref } from 'vue';
+import { useQuery } from '@vue/apollo-composable';
+import PoolsQuery from './PoolsQuery';
 
 interface PoolsQueryResult {
   pools: {
@@ -21,12 +21,12 @@ export default function usePoolsQuery() {
   const { result, loading, fetchMore, error } = useQuery<PoolsQueryResult>(
     PoolsQuery,
     {
-      orderBy: "totalLiquidity",
-      orderDirection: "desc",
+      orderBy: 'totalLiquidity',
+      orderDirection: 'desc',
       first: 6,
       skip: skip.value,
       // Hide boosted pools, they are outside the scope of this app
-      where: { poolType_not_in: ["StablePhantom", "AaveLinear"] },
+      where: { poolType_not_in: ['StablePhantom', 'AaveLinear'] },
     },
     { notifyOnNetworkStatusChange: true }
   );

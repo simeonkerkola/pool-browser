@@ -15,3 +15,8 @@ VITE_APP_INFURA_API_KEY="xxxxxxx"
 npm run dev
 ```
 
+
+## Future improvements:
+- [ ] Show Balanced Pools and their composition
+- [ ] Show Token logos
+- [ ] Generate GraphQL query typescript types automatically from schema with [apollo cli](https://github.com/apollographql/apollo-tooling)

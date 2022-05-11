@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router";
-import { useQuery } from "@vue/apollo-composable";
-import PoolQuery from "./PoolQuery";
-import { computed } from "vue";
-import PoolViewTokens from "../components/PoolViewTokens.vue";
+import { useRoute } from 'vue-router';
+import { useQuery } from '@vue/apollo-composable';
+import PoolQuery from './PoolQuery';
+import { computed } from 'vue';
+import PoolViewTokens from '../components/PoolViewTokens.vue';
 
 interface PoolQueryResult {
   pool: {
@@ -21,7 +21,7 @@ interface PoolQueryResult {
   };
 }
 const route = useRoute();
-const poolId = route.params.id as string;
+const poolId: string = route.params.id as string;
 
 const { result, loading } = useQuery<PoolQueryResult>(PoolQuery, {
   id: poolId,

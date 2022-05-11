@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits<{
-  (e: "click", value: MouseEvent): void;
+  (e: 'click', value: MouseEvent): void;
 }>();
 
 const props = defineProps({
@@ -10,7 +10,7 @@ const props = defineProps({
 
 <template>
   <button class="button" @click="(e) => emit('click', e)">
-    {{ props.loading ? "Loading..." : "Fetch more" }}
+    {{ props.loading ? 'Loading...' : 'Fetch more' }}
   </button>
 </template>
 

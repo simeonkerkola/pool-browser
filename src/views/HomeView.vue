@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import usePoolsQuery from "@/composables/usePoolsQuery/usePoolsQuery";
-import FetchMoreBtn from "@/components/FetchMoreBtn.vue";
-import PoolCard from "@/components/PoolCard.vue";
+import { computed } from 'vue';
+import usePoolsQuery from '@/composables/usePoolsQuery/usePoolsQuery';
+import FetchMoreBtn from '@/components/FetchMoreBtn.vue';
+import PoolCard from '@/components/PoolCard.vue';
 
 const { result, loading, error, fetchMoreResults } = usePoolsQuery();
 

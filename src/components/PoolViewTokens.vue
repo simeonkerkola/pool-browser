@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ethers } from "ethers";
-import TokenInfo from "../components/TokenInfo.vue";
-import useVault from "../composables/useVault";
-import { ref } from "vue";
+import { ethers } from 'ethers';
+import TokenInfo from '../components/TokenInfo.vue';
+import useVault from '../composables/useVault';
+import { ref } from 'vue';
 
 interface Props {
   poolId: string;
@@ -52,7 +52,7 @@ vault.getPoolTokens(props.poolId).then((res) => {
       :loading="tokenBalancesLoading"
       :symbol="poolToken.symbol"
       :id="poolToken.token.id"
-      :weight="poolToken.weight || '-'"
+      :weight="poolToken.weight"
       :balance="getPoolTokenBalance(poolToken.token.id)"
     >
     </token-info>
