@@ -1,4 +1,4 @@
-# pool-browser
+# Balancer Pool Browser
 
 ## Project Setup
 
@@ -18,5 +18,5 @@ npm run dev
 
 ## Future improvements:
 - [ ] Show Balanced Pools and their composition
-- [ ] Show Token logos
+- [ ] Show Icon for each Asset
 - [ ] Generate GraphQL query typescript types automatically from schema with [apollo cli](https://github.com/apollographql/apollo-tooling)
