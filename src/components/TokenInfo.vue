@@ -7,7 +7,7 @@ interface Props {
   id: string;
   loading?: boolean;
   balance?: string;
-  weight?: string | number;
+  weight?: string | number | null;
 }
 
 // reactive destructure for defineProps()
@@ -24,7 +24,6 @@ const formattedWeight = computed(() =>
   <a :href="`https://etherscan.io/address/${id}`" rel="noopener noreferrer">
     {{ symbol }}
   </a>
-
   <span class="text-end">{{ formattedWeight }}</span>
   <div class="text-end">
     <span v-if="loading">loading...</span>
