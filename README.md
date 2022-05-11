@@ -16,7 +16,7 @@ npm run dev
 ```
 
 
-## Future improvements:
+## Future improvements
 - [ ] Show Balanced Pools and their composition
 - [ ] Show Icon for each Asset
 - [ ] Generate GraphQL query typescript types automatically from schema with [apollo cli](https://github.com/apollographql/apollo-tooling)
