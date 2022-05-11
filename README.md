@@ -19,4 +19,5 @@ npm run dev
 ## Future improvements
 - [ ] Show Balanced Pools and their composition
 - [ ] Show Icon for each Asset
+- [ ] Option: Use Wallet as a provider insted of infura
 - [ ] Generate GraphQL query typescript types automatically from schema with [apollo cli](https://github.com/apollographql/apollo-tooling)
