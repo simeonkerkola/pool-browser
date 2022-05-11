@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { RouterLink } from "vue-router";
-import { formatUsd } from "../helpers/numbers";
-import PoolToken from "./PoolToken.vue";
+import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
+import { formatUsd } from '../helpers/numbers';
+import TokenChip from './TokenChip.vue';
 
 interface Props {
   pool: {
@@ -34,12 +34,13 @@ const pool = computed(() => props.pool);
       {{ formatUsd(pool.totalLiquidity) }}
     </span>
     <div class="tokens">
-      <pool-token
+      <token-chip
         v-for="poolToken in pool.tokens"
-        :poolToken="poolToken"
+        :weight="poolToken.weight"
+        :symbol="poolToken.symbol"
         :key="poolToken.id"
       >
-      </pool-token>
+      </token-chip>
     </div>
   </article>
 </template>
